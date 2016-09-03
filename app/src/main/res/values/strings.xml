@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">RestaurantOrderSystem</string>
+    <string name="dish_title_label">Title</string>
+    <string name="dish_title_hint">Dish Title</string>
+    <string name="dish_name">Dish Name</string>
+    <string name="dish_save">Add New Dish</string>
+    <string name="new_dish">New Dish</string>
+    <string name="show_subtitle">Show Subtitle</string>
+    <string name="hide_subtitle">Hide Subtitle</string>
+    <string name="subtitle_format">%1$s dishes</string>
+    <string name="add_to_cart">Add To Cart</string>
+    <string name="action_search">Search</string>
+</resources>
