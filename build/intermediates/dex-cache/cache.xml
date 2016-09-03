@@ -2,67 +2,11 @@
 <items version="2" >
 
     <item
-        jar="E:\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\24.0.0-beta1\support-annotations-24.0.0-beta1.jar"
-        jumboMode="true"
-        revision="23.0.2"
-        sha1="04705c19cdec60364bc04e2e928c274da1ba301b">
-        <dex dex="E:\Android\Android Project\RestaurantOrderSystemCustomerVersion\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-24.0.0-beta1_bdef91bdb925435792fa7646428f249b21fdee6a\classes.dex" />
-    </item>
-    <item
-        jar="E:\Android\Android Project\RestaurantOrderSystemCustomerVersion\app\build\intermediates\exploded-aar\com.android.support\support-v4\24.0.0-beta1\jars\classes.jar"
-        jumboMode="true"
-        revision="23.0.2"
-        sha1="f81eecb8d5e9e548f75f277830a94a9b37fbb987">
-        <dex dex="E:\Android\Android Project\RestaurantOrderSystemCustomerVersion\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-24.0.0-beta1_85e9e8348901ce49e716df80b906d1bd718a77f3\classes.dex" />
-    </item>
-    <item
-        jar="E:\Android\Android Project\RestaurantOrderSystemCustomerVersion\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\24.0.0-beta1\jars\classes.jar"
-        jumboMode="true"
-        revision="23.0.2"
-        sha1="471ce760dbf7b784fd74892b5113bca4e0d8def7">
-        <dex dex="E:\Android\Android Project\RestaurantOrderSystemCustomerVersion\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-recyclerview-v7-24.0.0-beta1_9052784c40371177bf7e72118b33e9b39f00a828\classes.dex" />
-    </item>
-    <item
-        jar="E:\Android\Android Project\RestaurantOrderSystemCustomerVersion\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\23.4.0\jars\classes.jar"
-        jumboMode="true"
-        revision="23.0.2"
-        sha1="c2c594cace5d83a3227b2b6e658ecbfd586d3ed9">
-        <dex dex="E:\Android\Android Project\RestaurantOrderSystemCustomerVersion\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-vector-drawable-23.4.0_8cb7570adc948db3f8649e491c03f0927c95be85\classes.dex" />
-    </item>
-    <item
-        jar="E:\Android\Android Project\RestaurantOrderSystemCustomerVersion\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\23.4.0\jars\classes.jar"
-        jumboMode="true"
-        revision="23.0.2"
-        sha1="de4db3785756bfb0915a9f59a9b3f2fea7407be4">
-        <dex dex="E:\Android\Android Project\RestaurantOrderSystemCustomerVersion\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-animated-vector-drawable-23.4.0_63483676f65c301959cad7838d44b2b7d681c704\classes.dex" />
-    </item>
-    <item
-        jar="E:\Android\Android Project\RestaurantOrderSystemCustomerVersion\app\build\intermediates\exploded-aar\com.android.support\support-v4\24.0.0-beta1\jars\libs\internal_impl-24.0.0-beta1.jar"
-        jumboMode="true"
-        revision="23.0.2"
-        sha1="23d564c059873f398dc5d967f56791a66472ce76">
-        <dex dex="E:\Android\Android Project\RestaurantOrderSystemCustomerVersion\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.0.0-beta1_9670f18f4f402b49c5e4116edfc890a2026beabc\classes.dex" />
-    </item>
-    <item
-        jar="E:\Android\Android Project\RestaurantOrderSystemCustomerVersion\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.4.0\jars\classes.jar"
-        jumboMode="true"
-        revision="23.0.2"
-        sha1="548f06de403a9409f00554b3ee12a9fdea0e236c">
-        <dex dex="E:\Android\Android Project\RestaurantOrderSystemCustomerVersion\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-appcompat-v7-23.4.0_ae7c2c5a5b1f980107770558adbbe1b84910785b\classes.dex" />
-    </item>
-    <item
         jar="E:\Android\Android Project\RestaurantOrderSystemCustomerVersion\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
         jumboMode="true"
         revision="23.0.2"
-        sha1="a3a33fdb9bc07f6a8c914ce491fb4e8441714e5d">
+        sha1="d6188c3306bf28d15d2267d14f9ca7c32dc2923e">
         <dex dex="E:\Android\Android Project\RestaurantOrderSystemCustomerVersion\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_4254cca90f86fa58a9073582d932f1c9de5e8e16\classes.dex" />
-    </item>
-    <item
-        jar="E:\Android\Android Project\RestaurantOrderSystemCustomerVersion\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
-        jumboMode="true"
-        revision="23.0.2"
-        sha1="3b37afdda771b90f7d826de72a129480743f0d3f">
-        <dex dex="E:\Android\Android Project\RestaurantOrderSystemCustomerVersion\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_e11a69d84af6e88613f04e078c2b249a7a85cb91\classes.dex" />
     </item>
 
 </items>

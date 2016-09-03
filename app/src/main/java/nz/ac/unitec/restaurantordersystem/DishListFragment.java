@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -21,29 +22,28 @@ import android.widget.TextView;
 import java.io.File;
 import java.util.List;
 
+import nz.ac.unitec.restaurantordersystem.service.DishDBManager;
+
 /**
  * Created by Kay on 27/07/2016.
  */
 public class DishListFragment extends Fragment {
-    private static final String TAG = "CrimeListFragment";
+    private static final String TAG = "DishListFragment";
 
     private RecyclerView mDishRecyclerView;
     private DishAdapter mAdapter;
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
-    }
 
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         View view = inflater.inflate(R.layout.fragment_dish_list,container,false);
-
         mDishRecyclerView = (RecyclerView)view.findViewById(R.id.dish_recycler_view);
         mDishRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-
 
         updateUI();
 

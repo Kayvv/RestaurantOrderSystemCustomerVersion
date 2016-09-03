@@ -5,6 +5,8 @@ import android.app.FragmentManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import nz.ac.unitec.restaurantordersystem.service.DishDBManager;
+
 /**
  * Created by Kay on 27/07/2016.
  */
@@ -23,5 +25,12 @@ public abstract class BaseActivity extends AppCompatActivity {
                     .add(R.id.fragmentContainer, fragment)
                     .commit();
         }
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                String result = DishDBManager.getMenu();
+                System.out.println(result);
+            }
+        }).start();
     }
 }
