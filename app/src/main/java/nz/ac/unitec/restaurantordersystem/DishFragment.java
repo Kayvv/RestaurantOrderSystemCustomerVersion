@@ -34,7 +34,6 @@ public class DishFragment extends Fragment {
     private TextView mDishName;
     private TextView mDescription;
     private Dish mDish;
-    private ImageButton mPhotoButton;
     private ImageView mPhotoView;
 
 
