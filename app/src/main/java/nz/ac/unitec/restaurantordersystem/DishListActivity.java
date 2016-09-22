@@ -1,8 +1,6 @@
 package nz.ac.unitec.restaurantordersystem;
 
 import android.app.Activity;
-import android.app.Fragment;
-import android.app.FragmentManager;
 import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.SearchView;
@@ -12,9 +10,14 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 import nz.ac.unitec.restaurantordersystem.pojo.Category;
+import nz.ac.unitec.restaurantordersystem.service.DishDBManager;
 import se.emilsjolander.stickylistheaders.StickyListHeadersListView;
 
 /**
@@ -30,6 +33,28 @@ public class DishListActivity extends Activity{
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shopping_cart);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                CategoryLab categoryLab = CategoryLab.get(DishListActivity.this);
+                Category c = new Category();
+                String result = DishDBManager.getMenu();
+                System.out.println(result);
+                try {
+                    JSONArray jAry = new JSONArray(result);
+                    for (int i = 0; i < jAry.length();i++){
+                        JSONObject jObj = jAry.getJSONObject(i);
+                    String description = jObj.getString("categoryID");
+                    String name = jObj.getString("categoryName");
+                    c.setName(name);
+                        categoryLab.addCategory(c);
+                    System.out.println(description);
+                    System.out.println(name);}
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -44,31 +69,5 @@ public class DishListActivity extends Activity{
         return true;
     }
 
-    //根据类别Id获取属于当前类别的数量
-    public int getSelectedGroupCountByTypeId(int typeId){
-        return groupSelect.get(typeId);
-    }
 
-    public int getSelectedItemCountById(int id){
-        Category temp = selectedList.get(id);
-        if(temp==null){
-            return 0;
-        }
-        return temp.count;
-    }
-
-    public void onTypeClicked(int typeId){
-        listView.setSelection(getSelectedPosition(typeId));
-    }
-
-    private int getSelectedPosition(int typeId){
-        int position = 0;
-        for(int i=0;i<dataList.size();i++){
-            if(dataList.get(i).typeId == typeId){
-                position = i;
-                break;
-            }
-        }
-        return position;
-    }
 }

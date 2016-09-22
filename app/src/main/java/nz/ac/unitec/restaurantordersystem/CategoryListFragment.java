@@ -3,7 +3,6 @@ package nz.ac.unitec.restaurantordersystem;
 import android.app.Fragment;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.LinearLayoutManager;
@@ -19,7 +18,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
 
 import nz.ac.unitec.restaurantordersystem.pojo.Category;
@@ -29,10 +27,10 @@ import nz.ac.unitec.restaurantordersystem.pojo.Dish;
  * Created by Kay on 27/07/2016.
  */
 public class CategoryListFragment extends Fragment {
-    private static final String TAG = "CategoryListFragment";
+    private static final String TAG = "DishListFragment";
 
     private RecyclerView mDishRecyclerView;
-    private TypeAdapter mAdapter;
+    private CategoryAdapter mAdapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -46,7 +44,7 @@ public class CategoryListFragment extends Fragment {
         mDishRecyclerView = (RecyclerView)view.findViewById(R.id.dish_recycler_view);
         mDishRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-       // updateUI();
+        updateUI();
 
         return view;
     }
@@ -54,7 +52,7 @@ public class CategoryListFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-      //  updateUI();
+        updateUI();
     }
 
     @Override
@@ -62,6 +60,19 @@ public class CategoryListFragment extends Fragment {
         super.onSaveInstanceState(outState);
     }
 
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.fragment_dish_list, menu);
+
+        MenuItem searchItem = menu.findItem(R.id.action_search);
+        SearchView searchView =
+                (SearchView) MenuItemCompat.getActionView(searchItem);
+
+        // Configure the search info and add any event listeners...
+
+
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -77,97 +88,75 @@ public class CategoryListFragment extends Fragment {
 
 
 
-//    private void updateUI(){
-//        DishLab dishLab = DishLab.get(getActivity());
-//        List<Dish> dishes = dishLab.getDishes();
-//        if (mAdapter == null) {
-//            mAdapter = new TypeAdapter(dishes);
-//            mDishRecyclerView.setAdapter(mAdapter);
-//        } else {
-//            mAdapter.setDishes(dishes);
-//            mAdapter.notifyDataSetChanged();
-//        }
-//    }
-
-
-    public class TypeAdapter extends RecyclerView.Adapter<TypeAdapter.ViewHolder> {
-        public int selectTypeId;
-        public DishListActivity activity;
-        public ArrayList<Category> dataList;
-
-        public TypeAdapter(DishListActivity activity, ArrayList<Category> dataList) {
-            this.activity = activity;
-            this.dataList = dataList;
+    private void updateUI(){
+        CategoryLab categoryLab = CategoryLab.get(getActivity());
+        List<Category> dishes =categoryLab.getCategories();
+        if (mAdapter == null) {
+            mAdapter = new CategoryAdapter(dishes);
+            mDishRecyclerView.setAdapter(mAdapter);
+        } else {
+            mAdapter.setDishes(dishes);
+            mAdapter.notifyDataSetChanged();
         }
+    }
 
 
-        @Override
-        public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_type, parent, false);
-            ViewHolder holder = new ViewHolder(view);
-            return holder;
+    private class CategoryAdapter extends RecyclerView.Adapter<CategoryHolder> {
+
+        private List<Category> mCategories;
+
+        public CategoryAdapter(List<Category> categories){
+            mCategories = categories;
         }
 
         @Override
-        public void onBindViewHolder(ViewHolder holder, int position) {
-            Category item = dataList.get(position);
+        public CategoryHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            LayoutInflater layoutInflater = LayoutInflater.from(getActivity());
+            View view = layoutInflater.inflate(R.layout.item_category, parent, false);
+            return new CategoryHolder(view);
+        }
 
-            holder.bindData(item);
+        @Override
+        public void onBindViewHolder(CategoryHolder holder, int position) {
+            Category category = mCategories.get(position);
+            holder.bindCategory(category);
         }
 
         @Override
         public int getItemCount() {
-            if (dataList == null) {
-                return 0;
-            }
-            return dataList.size();
+            return mCategories.size();
         }
 
-        //define the ViewHolder by inner class
-        public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-
-            TextView tvCount, type;
-            private Category item;
-
-            public ViewHolder(View itemView) {
-                super(itemView);
-                tvCount = (TextView) itemView.findViewById(R.id.tvCount);
-                type = (TextView) itemView.findViewById(R.id.type);
-                itemView.setOnClickListener(this);
-            }
-
-            public void bindData(Category item) {
-                this.item = item;
-                type.setText(item.typeName);
-                int count = activity.getSelectedGroupCountByTypeId(item.typeId);
-                tvCount.setText(String.valueOf(count));
-                if (count < 1) {
-                    tvCount.setVisibility(View.GONE);
-                } else {
-                    tvCount.setVisibility(View.VISIBLE);
-                }
-                if (item.typeId == selectTypeId) {
-                    itemView.setBackgroundColor(Color.WHITE);
-                } else {
-                    itemView.setBackgroundColor(Color.TRANSPARENT);
-                }
-
-            }
-
-//        public void bindCategory(Dish dish) {
-//            mDish = dish;
-//            mPhotoFile = DishLab.get(getActivity()).getPhotoFile(mDish);
-//            mTitleTextView.setText(mDish.getName());
-//            mPriceTextView.setText(mDish.toString());
-//        }
-
-            @Override
-            public void onClick(View v) {
-                activity.onTypeClicked(item.typeId);
-            }
-
-
+        public void setDishes(List<Category> categories) {
+            mCategories = categories;
         }
+
     }
+
+    //define the ViewHolder by inner class
+    private class CategoryHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+        private TextView mTitleTextView;
+
+        private Category mCategory;
+
+        public CategoryHolder(View itemView) {
+            super(itemView);
+            itemView.setOnClickListener(this);
+
+            mTitleTextView = (TextView)
+                    itemView.findViewById(R.id.type);
+        }
+
+        public void bindCategory(Category category) {
+            mCategory = category;
+            mTitleTextView.setText(mCategory.getName());
+        }
+
+        @Override
+        public void onClick(View v) {
+        }
+
+    }
+
 
 }

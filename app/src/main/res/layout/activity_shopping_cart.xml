@@ -53,7 +53,7 @@
 
         <TextView android:textColor="#fff"
             android:layout_width="wrap_content"
-            android:text="￥100元起送"
+            android:text="Check Out"
             android:id="@+id/tvTips"
             android:layout_marginRight="10dp"
             android:gravity="center"
@@ -61,7 +61,7 @@
         <TextView android:textColor="#fff"
             android:layout_width="120dp"
             android:background="#22c222"
-            android:text="去结算"
+            android:text="Check Out"
             android:onClick="onClick"
             android:clickable="true"
             android:id="@+id/tvSubmit"
