@@ -5,7 +5,7 @@ import android.database.CursorWrapper;
 
 import java.util.UUID;
 
-import nz.ac.unitec.restaurantordersystem.Dish;
+import nz.ac.unitec.restaurantordersystem.pojo.Dish;
 import nz.ac.unitec.restaurantordersystem.database.DishDbSchema.DishTable;
 
 /**

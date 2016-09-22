@@ -20,7 +20,7 @@ public class DishDBManager  {
          String result;
         HttpURLConnection urlConnection = null;
         try {
-            URL url = new URL("http://kayvv.cc/menu.php");
+            URL url = new URL("http://kayvv.cc/getCate.php");
             urlConnection = (HttpURLConnection) url.openConnection();
         } catch (IOException e) {
             e.printStackTrace();

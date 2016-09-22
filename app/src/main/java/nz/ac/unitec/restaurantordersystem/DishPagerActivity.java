@@ -13,6 +13,8 @@ import android.support.v7.app.AppCompatActivity;
 import java.util.List;
 import java.util.UUID;
 
+import nz.ac.unitec.restaurantordersystem.pojo.Dish;
+
 /**
  * Created by Kay on 14/08/2016.
  */

@@ -5,11 +5,9 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -22,7 +20,7 @@ import android.widget.TextView;
 import java.io.File;
 import java.util.List;
 
-import nz.ac.unitec.restaurantordersystem.service.DishDBManager;
+import nz.ac.unitec.restaurantordersystem.pojo.Dish;
 
 /**
  * Created by Kay on 27/07/2016.
@@ -137,7 +135,7 @@ public class DishListFragment extends Fragment {
     //define the ViewHolder by inner class
     private class DishHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         private TextView mTitleTextView;
-        private TextView mDateTextView;
+        private TextView mPriceTextView;
         private ImageView mPhotoView;
         private File mPhotoFile;
 
@@ -150,16 +148,16 @@ public class DishListFragment extends Fragment {
             mPhotoView = (ImageView)
                     itemView.findViewById(R.id.dish_photo);
             mTitleTextView = (TextView)
-                    itemView.findViewById(R.id.list_item_dish_title_text_view);
-            mDateTextView = (TextView)
-                    itemView.findViewById(R.id.list_item_dish_date_text_view);
+                    itemView.findViewById(R.id.dish_title);
+            mPriceTextView = (TextView)
+                    itemView.findViewById(R.id.dish_price);
         }
 
         public void bindDish(Dish dish) {
             mDish = dish;
             mPhotoFile = DishLab.get(getActivity()).getPhotoFile(mDish);
             mTitleTextView.setText(mDish.getName());
-            mDateTextView.setText(mDish.getDescription());
+            mPriceTextView.setText(mDish.toString());
             updatePhotoView();
         }
 

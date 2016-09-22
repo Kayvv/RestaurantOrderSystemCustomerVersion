@@ -5,37 +5,41 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="KK Restaurant"/>
-
+    <LinearLayout
+        android:layout_alignParentBottom="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
     <Button
         android:id = "@+id/view_menu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentBottom="true"
         android:text="View Menu"/>
 
     <Button
         android:id="@+id/book_table"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:text="Book Table"/>
+        android:text="Book Table"/></LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
     <Button
         android:id="@+id/find_us"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_below="@id/view_menu"
         android:text="Find Us"/>
     <Button
         android:id="@+id/contact_us"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@id/find_us"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
         android:text="Contact Us"/>
-
+    </LinearLayout>
+</LinearLayout>
 
 </RelativeLayout>

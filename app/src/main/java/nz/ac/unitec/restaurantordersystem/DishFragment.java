@@ -2,11 +2,8 @@ package nz.ac.unitec.restaurantordersystem;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +14,8 @@ import android.widget.TextView;
 
 import java.io.File;
 import java.util.UUID;
+
+import nz.ac.unitec.restaurantordersystem.pojo.Dish;
 
 /**
  * Created by Kay on 27/07/2016.

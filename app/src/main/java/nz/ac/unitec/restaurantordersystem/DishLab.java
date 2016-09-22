@@ -14,6 +14,7 @@ import java.util.UUID;
 import nz.ac.unitec.restaurantordersystem.database.DishBaseHelper;
 import nz.ac.unitec.restaurantordersystem.database.DishCursorWrapper;
 import nz.ac.unitec.restaurantordersystem.database.DishDbSchema.DishTable;
+import nz.ac.unitec.restaurantordersystem.pojo.Dish;
 
 /**
  * Created by Kay on 27/07/2016.
