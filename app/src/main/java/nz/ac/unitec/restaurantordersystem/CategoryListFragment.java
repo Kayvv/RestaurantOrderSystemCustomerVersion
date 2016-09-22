@@ -29,7 +29,7 @@ import nz.ac.unitec.restaurantordersystem.pojo.Dish;
  * Created by Kay on 27/07/2016.
  */
 public class CategoryListFragment extends Fragment {
-    private static final String TAG = "DishListFragment";
+    private static final String TAG = "CategoryListFragment";
 
     private RecyclerView mDishRecyclerView;
     private TypeAdapter mAdapter;
@@ -46,7 +46,7 @@ public class CategoryListFragment extends Fragment {
         mDishRecyclerView = (RecyclerView)view.findViewById(R.id.dish_recycler_view);
         mDishRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        updateUI();
+       // updateUI();
 
         return view;
     }
@@ -54,7 +54,7 @@ public class CategoryListFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        updateUI();
+      //  updateUI();
     }
 
     @Override
@@ -103,7 +103,7 @@ public class CategoryListFragment extends Fragment {
 
         @Override
         public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_type,parent,false);
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_type, parent, false);
             ViewHolder holder = new ViewHolder(view);
             return holder;
         }
@@ -117,41 +117,42 @@ public class CategoryListFragment extends Fragment {
 
         @Override
         public int getItemCount() {
-            if(dataList==null){
+            if (dataList == null) {
                 return 0;
             }
             return dataList.size();
         }
 
-    //define the ViewHolder by inner class
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+        //define the ViewHolder by inner class
+        public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        TextView tvCount,type;
-        private Category item;
-        public ViewHolder(View itemView) {
-            super(itemView);
-            tvCount = (TextView) itemView.findViewById(R.id.tvCount);
-            type = (TextView) itemView.findViewById(R.id.type);
-            itemView.setOnClickListener(this);
-        }
+            TextView tvCount, type;
+            private Category item;
 
-        public void bindData(Category item){
-            this.item = item;
-            type.setText(item.typeName);
-            int count = activity.getSelectedGroupCountByTypeId(item.typeId);
-            tvCount.setText(String.valueOf(count));
-            if(count<1){
-                tvCount.setVisibility(View.GONE);
-            }else{
-                tvCount.setVisibility(View.VISIBLE);
-            }
-            if(item.typeId==selectTypeId){
-                itemView.setBackgroundColor(Color.WHITE);
-            }else{
-                itemView.setBackgroundColor(Color.TRANSPARENT);
+            public ViewHolder(View itemView) {
+                super(itemView);
+                tvCount = (TextView) itemView.findViewById(R.id.tvCount);
+                type = (TextView) itemView.findViewById(R.id.type);
+                itemView.setOnClickListener(this);
             }
 
-        }
+            public void bindData(Category item) {
+                this.item = item;
+                type.setText(item.typeName);
+                int count = activity.getSelectedGroupCountByTypeId(item.typeId);
+                tvCount.setText(String.valueOf(count));
+                if (count < 1) {
+                    tvCount.setVisibility(View.GONE);
+                } else {
+                    tvCount.setVisibility(View.VISIBLE);
+                }
+                if (item.typeId == selectTypeId) {
+                    itemView.setBackgroundColor(Color.WHITE);
+                } else {
+                    itemView.setBackgroundColor(Color.TRANSPARENT);
+                }
+
+            }
 
 //        public void bindCategory(Dish dish) {
 //            mDish = dish;
@@ -160,14 +161,13 @@ public class CategoryListFragment extends Fragment {
 //            mPriceTextView.setText(mDish.toString());
 //        }
 
-        @Override
-        public void onClick(View v) {
-            activity.onTypeClicked(item.typeId);
+            @Override
+            public void onClick(View v) {
+                activity.onTypeClicked(item.typeId);
+            }
+
+
         }
-
-
-
     }
-
 
 }
