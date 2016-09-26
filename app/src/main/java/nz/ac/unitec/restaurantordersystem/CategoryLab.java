@@ -43,7 +43,7 @@ public class CategoryLab {
 
     public List<Category> getCategories(){
         List<Category> Categories = new ArrayList<>();
-        CategoryCursorWrapper cursor = queryCategoryes(null, null);
+        CategoryCursorWrapper cursor = queryCategories(null, null);
         try {
             cursor.moveToFirst();
             while (!cursor.isAfterLast()) {
@@ -57,7 +57,7 @@ public class CategoryLab {
     }
 
     public Category getCategory(UUID id){
-        CategoryCursorWrapper cursor = queryCategoryes(
+        CategoryCursorWrapper cursor = queryCategories(
                 CategoryTable.Cols.UUID + " = ?",
                 new String[]{id.toString()}
         );
@@ -90,7 +90,7 @@ public class CategoryLab {
     }
 
 
-    private CategoryCursorWrapper queryCategoryes(String whereClause, String[] whereArgs) {
+    private CategoryCursorWrapper queryCategories(String whereClause, String[] whereArgs) {
         Cursor cursor = mDatabase.query(
                 CategoryTable.NAME,
                 null, // Columns - null selects all columns

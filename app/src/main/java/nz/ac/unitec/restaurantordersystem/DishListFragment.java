@@ -14,13 +14,17 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.io.File;
+import java.text.NumberFormat;
 import java.util.List;
 
 import nz.ac.unitec.restaurantordersystem.pojo.Dish;
+import se.emilsjolander.stickylistheaders.StickyListHeadersAdapter;
+import se.emilsjolander.stickylistheaders.StickyListHeadersListView;
 
 /**
  * Created by Kay on 27/07/2016.
@@ -28,7 +32,7 @@ import nz.ac.unitec.restaurantordersystem.pojo.Dish;
 public class DishListFragment extends Fragment {
     private static final String TAG = "DishListFragment";
 
-    private RecyclerView mDishRecyclerView;
+    private StickyListHeadersListView mDishRecyclerView;
     private DishAdapter mAdapter;
 
     @Override
@@ -40,8 +44,7 @@ public class DishListFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         View view = inflater.inflate(R.layout.fragment_dish_list,container,false);
-        mDishRecyclerView = (RecyclerView)view.findViewById(R.id.dish_recycler_view);
-        mDishRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mDishRecyclerView = (StickyListHeadersListView)view.findViewById(R.id.dish_sticky_view);
 
         updateUI();
 
@@ -100,40 +103,68 @@ public class DishListFragment extends Fragment {
     }
 
 
-    private class DishAdapter extends RecyclerView.Adapter<DishHolder> {
+    private class DishAdapter extends BaseAdapter implements StickyListHeadersAdapter {
 
         private List<Dish> mDishes;
 
+        private DishLab dataLab;
+        private DishListActivity mContext;
+        private NumberFormat nf;
+        private LayoutInflater mInflater;
+
+        public DishAdapter(DishLab dataLab, DishListActivity mContext) {
+            this.dataLab = dataLab;
+            this.mContext = mContext;
+            nf = NumberFormat.getCurrencyInstance();
+            nf.setMaximumFractionDigits(2);
+            mInflater = LayoutInflater.from(mContext);
+        }
+
         public DishAdapter(List<Dish> dishes){
             mDishes = dishes;
-        }
-
-        @Override
-        public DishHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            LayoutInflater layoutInflater = LayoutInflater.from(getActivity());
-            View view = layoutInflater.inflate(R.layout.list_item_dish, parent, false);
-            return new DishHolder(view);
-        }
-
-        @Override
-        public void onBindViewHolder(DishHolder holder, int position) {
-            Dish dish = mDishes.get(position);
-            holder.bindDish(dish);
-        }
-
-        @Override
-        public int getItemCount() {
-            return mDishes.size();
         }
 
         public void setDishes(List<Dish> dishes) {
             mDishes = dishes;
         }
 
+        @Override
+        public View getHeaderView(int position, View convertView, ViewGroup parent) {
+            if(convertView==null) {
+                convertView = mInflater.inflate(R.layout.item_header_view, parent, false);
+            }
+            ((TextView)(convertView)).setText(dataLab.getDishes().get(position).getCategoryId());
+            return convertView;
+        }
+
+        @Override
+        public long getHeaderId(int position) {
+            return 0;
+        }
+
+        @Override
+        public int getCount() {
+            return 0;
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return null;
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return 0;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            return null;
+        }
     }
 
     //define the ViewHolder by inner class
-    private class DishHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    private class DishHolder implements View.OnClickListener{
         private TextView mTitleTextView;
         private TextView mPriceTextView;
         private ImageView mPhotoView;
@@ -142,7 +173,6 @@ public class DishListFragment extends Fragment {
         private Dish mDish;
 
         public DishHolder(View itemView) {
-            super(itemView);
             itemView.setOnClickListener(this);
 
             mPhotoView = (ImageView)

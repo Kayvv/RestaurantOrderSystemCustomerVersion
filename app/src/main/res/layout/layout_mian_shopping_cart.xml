@@ -9,7 +9,7 @@
     android:layout_height="wrap_content">
 
     <fragment
-        android:id="@+id/left_fragment"
+        android:id="@+id/categoryRecyclerView"
         android:name="nz.ac.unitec.restaurantordersystem.CategoryListFragment"
         android:layout_width="100dp"
         android:layout_height="match_parent"/>

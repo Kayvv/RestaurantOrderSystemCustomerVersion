@@ -1,6 +1,7 @@
-<android.support.v7.widget.RecyclerView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/dish_recycler_view"
-    android:background="#fff"
+<se.emilsjolander.stickylistheaders.StickyListHeadersListView
     android:layout_width="match_parent"
-    android:layout_height="match_parent"/>
+    android:background="#fff"
+    android:id="@+id/dish_sticky_view"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+</se.emilsjolander.stickylistheaders.StickyListHeadersListView>

@@ -1,8 +1,6 @@
 package nz.ac.unitec.restaurantordersystem;
 
 import android.app.Fragment;
-import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.LinearLayoutManager;
@@ -14,14 +12,11 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.io.File;
 import java.util.List;
 
 import nz.ac.unitec.restaurantordersystem.pojo.Category;
-import nz.ac.unitec.restaurantordersystem.pojo.Dish;
 
 /**
  * Created by Kay on 27/07/2016.
@@ -40,7 +35,7 @@ public class CategoryListFragment extends Fragment {
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
-        View view = inflater.inflate(R.layout.fragment_dish_list,container,false);
+        View view = inflater.inflate(R.layout.fragment_category_list,container,false);
         mDishRecyclerView = (RecyclerView)view.findViewById(R.id.dish_recycler_view);
         mDishRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
