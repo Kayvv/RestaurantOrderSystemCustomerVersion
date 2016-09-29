@@ -38,7 +38,6 @@ public class DishListFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setHasOptionsMenu(true);
 
     }
     @Override
@@ -62,19 +61,19 @@ public class DishListFragment extends Fragment {
         super.onSaveInstanceState(outState);
     }
 
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        super.onCreateOptionsMenu(menu, inflater);
-        inflater.inflate(R.menu.fragment_dish_list, menu);
-
-        MenuItem searchItem = menu.findItem(R.id.action_search);
-        SearchView searchView =
-                (SearchView) MenuItemCompat.getActionView(searchItem);
-
-        // Configure the search info and add any event listeners...
-
-
-    }
+//    @Override
+//    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+//        super.onCreateOptionsMenu(menu, inflater);
+//        inflater.inflate(R.menu.fragment_dish_list, menu);
+//
+//        MenuItem searchItem = menu.findItem(R.id.action_search);
+//        SearchView searchView =
+//                (SearchView) MenuItemCompat.getActionView(searchItem);
+//
+//        // Configure the search info and add any event listeners...
+//
+//
+//    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -92,20 +91,19 @@ public class DishListFragment extends Fragment {
 
     private void updateUI(){
         DishLab dishLab = DishLab.get(getActivity());
+        DishListActivity dishListActivity = new DishListActivity();
         List<Dish> dishes = dishLab.getDishes();
         if (mAdapter == null) {
-            mAdapter = new DishAdapter(dishes);
+            mAdapter = new DishAdapter(dishLab,dishListActivity);
             mDishRecyclerView.setAdapter(mAdapter);
         } else {
-            mAdapter.setDishes(dishes);
+            //mAdapter.setDishes(dishes);
             mAdapter.notifyDataSetChanged();
         }
     }
 
 
     private class DishAdapter extends BaseAdapter implements StickyListHeadersAdapter {
-
-        private List<Dish> mDishes;
 
         private DishLab dataLab;
         private DishListActivity mContext;
@@ -120,14 +118,6 @@ public class DishListFragment extends Fragment {
             mInflater = LayoutInflater.from(mContext);
         }
 
-        public DishAdapter(List<Dish> dishes){
-            mDishes = dishes;
-        }
-
-        public void setDishes(List<Dish> dishes) {
-            mDishes = dishes;
-        }
-
         @Override
         public View getHeaderView(int position, View convertView, ViewGroup parent) {
             if(convertView==null) {
@@ -139,27 +129,40 @@ public class DishListFragment extends Fragment {
 
         @Override
         public long getHeaderId(int position) {
-            return 0;
+            return dataLab.getDishes().get(position).getCategoryId();
         }
 
         @Override
         public int getCount() {
-            return 0;
+            if(dataLab.getDishes()==null){
+                return 0;
+            }
+            return dataLab.getDishes().size();
         }
 
         @Override
         public Object getItem(int position) {
-            return null;
+            return dataLab.getDishes().get(position);
         }
 
         @Override
         public long getItemId(int position) {
-            return 0;
+            return position;
         }
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            return null;
+            DishHolder holder = null;
+            if(convertView==null){
+                convertView = mInflater.inflate(R.layout.item_goods,parent,false);
+                holder = new DishHolder(convertView);
+                convertView.setTag(holder);
+            }else{
+                holder = (DishHolder) convertView.getTag();
+            }
+            Dish dish = dataLab.getDishes().get(position);
+            holder.bindDish(dish);
+            return convertView;
         }
     }
 

@@ -98,6 +98,7 @@ public class DishLab {
         values.put(DishTable.Cols.DESCRIPTION,dish.getDescription());
         values.put(DishTable.Cols.PRICE,"test price");
         values.put(DishTable.Cols.IMAGE, "test image");
+        values.put(DishTable.Cols.CATEGORYID,"test Category id");
 
         return values;
     }

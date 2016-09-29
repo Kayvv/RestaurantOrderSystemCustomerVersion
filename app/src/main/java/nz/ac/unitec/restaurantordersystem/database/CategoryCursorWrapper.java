@@ -25,8 +25,8 @@ public class CategoryCursorWrapper extends CursorWrapper {
         String uuidString = getString(getColumnIndex(DishTable.Cols.UUID));
         String name = getString(getColumnIndex(DishTable.Cols.NAME));
 
-        Category dish = new Category(UUID.fromString(uuidString));
-        dish.setName(name);
-        return dish;
+        Category category = new Category(UUID.fromString(uuidString));
+        category.setName(name);
+        return category;
     }
 }

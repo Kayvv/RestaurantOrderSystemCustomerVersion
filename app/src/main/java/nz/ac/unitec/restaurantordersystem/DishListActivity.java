@@ -59,28 +59,31 @@ public class DishListActivity extends Activity{
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shopping_cart);
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                CategoryLab categoryLab = CategoryLab.get(DishListActivity.this);
-                Category c = new Category();
-                String result = DishDBManager.getMenu();
-                System.out.println(result);
-                try {
-                    JSONArray jAry = new JSONArray(result);
-                    for (int i = 0; i < jAry.length();i++){
-                        JSONObject jObj = jAry.getJSONObject(i);
-                    String description = jObj.getString("categoryID");
-                    String name = jObj.getString("categoryName");
-                    c.setName(name);
-                        categoryLab.addCategory(c);
-                    System.out.println(description);
-                    System.out.println(name);}
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        }).start();
+        DishLab dishLab = DishLab.get(DishListActivity.this);
+        Dish d = new Dish();
+        dishLab.addDish(d);
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                CategoryLab categoryLab = CategoryLab.get(DishListActivity.this);
+//                Category c = new Category();
+//                String result = DishDBManager.getMenu();
+//                System.out.println(result);
+//                try {
+//                    JSONArray jAry = new JSONArray(result);
+//                    for (int i = 0; i < jAry.length();i++){
+//                        JSONObject jObj = jAry.getJSONObject(i);
+//                    String categoryID = jObj.getString("categoryID");
+//                    String name = jObj.getString("categoryName");
+//                    c.setName(name);
+//                        categoryLab.addCategory(c);
+//                    System.out.println(categoryID);
+//                    System.out.println(name);}
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }).start();
 
         initView();
     }
@@ -105,22 +108,22 @@ public class DishListActivity extends Activity{
 //        myAdapter = new GoodsAdapter(dataList, this);
 //        listView.setAdapter(myAdapter);
 
-        listView.setOnScrollListener(new AbsListView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(AbsListView view, int scrollState) {
-
-            }
-
-            @Override
-            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-                Dish item = dataList.getDishes().get(firstVisibleItem);
+//        listView.setOnScrollListener(new AbsListView.OnScrollListener() {
+//            @Override
+//            public void onScrollStateChanged(AbsListView view, int scrollState) {
+//
+//            }
+//
+//            @Override
+//            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+//                Dish item = dataList.getDishes().get(firstVisibleItem);
 //                if (typeAdapter.selectTypeId != item.typeId) {
 //                    typeAdapter.selectTypeId = item.typeId;
 //                    typeAdapter.notifyDataSetChanged();
 //                    rvType.smoothScrollToPosition(getSelectedGroupPosition(item.typeId));
 //                }
-            }
-        });
+//            }
+//        });
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {

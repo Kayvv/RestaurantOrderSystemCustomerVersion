@@ -24,7 +24,8 @@ public class DishBaseHelper extends SQLiteOpenHelper {
                 DishTable.Cols.NAME+", "+
                 DishTable.Cols.DESCRIPTION+", "+
                 DishTable.Cols.PRICE+", "+
-                DishTable.Cols.IMAGE+")"
+                DishTable.Cols.IMAGE+","+
+                DishTable.Cols.CATEGORYID+")"
         );
 
     }

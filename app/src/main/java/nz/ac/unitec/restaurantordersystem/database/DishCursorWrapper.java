@@ -27,12 +27,14 @@ public class DishCursorWrapper extends CursorWrapper {
         String description = getString(getColumnIndex(DishTable.Cols.DESCRIPTION));
         Float price = getFloat(getColumnIndex(DishTable.Cols.PRICE));
         String image = getString(getColumnIndex(DishTable.Cols.IMAGE));
+        int categoryId = getInt(getColumnIndex(DishTable.Cols.CATEGORYID));
 
         Dish dish = new Dish(UUID.fromString(uuidString));
         dish.setName(name);
         dish.setDescription(description);
         dish.setPrice(price);
         dish.setImage(image);
+        dish.setCategoryId(categoryId);
         return dish;
     }
 }
